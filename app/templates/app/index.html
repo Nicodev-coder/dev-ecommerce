@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- ===== MODAL POP-UP ===== -->
+<div class="modal fade" id="infoUpdateModal" tabindex="-1" aria-labelledby="infoUpdateModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg animate__animated animate__fadeInDown">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="infoUpdateModalLabel">Nouvelle fonctionnalité ! 🎉</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <i class="bi bi-book-half text-primary fs-1 animate__animated animate__bounce animate__infinite"></i>
+        <p class="mt-3">
+          Salut {% if user.is_authenticated %}{{ user.username }}{% endif %} !  
+          Tu peux maintenant accéder à <strong>tous les ebooks que tu as téléchargés</strong> dans ton espace personnel.
+        </p>
+        {% if user.is_authenticated %}
+          <p>📚 Clique sur <strong>Mes ebooks</strong> pour voir ta bibliothèque.</p>
+        {% else %}
+          <p>📚 Inscris-toi dès maintenant pour profiter de cette nouvelle fonctionnalité !</p>
+        {% endif %}
+      </div>
+      <div class="modal-footer justify-content-center">
+        {% if user.is_authenticated %}
+          <a href="{% url 'mes_ebooks' %}" class="btn btn-primary">Voir mes ebooks</a>
+        {% else %}
+          <a href="{% url 'singup' %}" class="btn btn-success">S'inscrire maintenant</a>
+        {% endif %}
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var myModal = new bootstrap.Modal(document.getElementById('infoUpdateModal'), {
+        backdrop: 'static',
+        keyboard: true
+    });
+    myModal.show();
+});
+</script>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1 class=" text-center display-5 py-5 h">Welcom, Nicodocs</h1>
+      <P class="fs-5">Téléchargez des eBooks gratuits et payants dans divers domaines : informatique, développement personnel, entrepreneuriat, éducation, technologie, et bien plus encore.  
+Notre plateforme vous donne accès à des ressources pratiques, faciles à lire et à utiliser, pour apprendre, progresser ou simplement vous inspirer.
+
+ Que vous soyez étudiant, professionnel ou passionné de savoir, vous trouverez ici des contenus faits pour vous.  
+ Accédez à votre savoir en un clic !
+</P>
+      <div class="d-flex justify-content-center">
+        <a href="#d" ><button class="btn btn-outline-danger">COMMENCEZ</button></a>
+      </div>
+
+      <hr>
+
+    </div>
+    
+
+  </div>
+
+</div>
+<div class="container my-5">
+  <h2 class="text-center mb-4" id="d">🛍 Nos Ebook</h2>
+  <div class="row">
+    
+    <!-- Produit 1 -->
+    <div class="col-md-4 mb-4">
+    {% for ebook in ebooks%}
+      <div class="card h-100">
+        <img src="{{ebook.image.url}}" class="card-img-top" alt="{{ebook.titre}}">
+        <div class="card-body">
+          <h5 class="card-title">{{ebook.titre}}</h5>
+          <a href="{% url 'ebook' ebook.slug %}" class="btn btn-success">Voir l'ebook</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Duplique le bloc col-md-4 pour ajouter d'autres produits -->
+    
+  </div>
+</div>
+
+</div>
+
+
+
+
+{% endblock%}
+

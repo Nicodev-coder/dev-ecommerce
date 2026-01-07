@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% block content %}
+<h1>S'inscrire</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <p>
+        <label for="username">Nom d'utilisateur</label>
+        <input id="username" type="text" name="username">
+    </p>
+     <p>
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" name="password">
+    </p>
+    <button type="submit">S'inscrire</button>
+    <p style="color: blue;"><a href="{% url 'login' %}">Vous avez déjà un compte? connectez vous ici</a></p>
+
+</form>
+{% endblock%}

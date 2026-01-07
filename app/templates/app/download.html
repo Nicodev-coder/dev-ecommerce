@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content  %}
+    
+    
+<div class="container shawdow bg-light ">
+  <a href="{% url 'index' %}">Voir plus d'ebook</a>
+    <div class="row p-5">
+        <div class="col">
+            <h1 class="text-center">{{ebooks.titre}}</h1> 
+            <img src="{{ebooks.image.url}}" alt="{{ebooks.titre}}" srcset="">   
+            <p>{{ebooks.description}}</p>
+            <a href="{% url 'telecharger_ebook' ebooks.slug %}" class="btn btn-success">Télecharger Maintenant</a>
+
+        </div>
+        <h1 class="display-5">Voulez-vous plus d'ebook gratuit? </h1>
+        <p>inscrivez vous a notre newsletters pour avoir des nouvelles ebook gratuit Automatiquement, directement dans votre boite email!.</p>
+        <a href="{% url 'newsletter' %}" class="btn btn-primary">Inscrivez-vous ici</a>
+        
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+
+{% block  %}
+<footer class="bg-dark text-white py-4 mt-5">
+  <div class="container text-center">
+    <p class="mb-1">© 2025 MonSite. Tous droits réservés.</p>
+    <a href="#" class="text-white me-3">Mentions légales</a>
+    <a href="#" class="text-white">Contact</a>
+  </div>
+</footer>
+{% endblock  %}
